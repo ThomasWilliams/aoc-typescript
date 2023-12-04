@@ -1,15 +1,5 @@
 # aoc-typescript
 
-To install dependencies:
+Requires a valid token set to `TOKEN` environment variable.
 
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.0.6. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+To solve a day, run `bun run solve <year> <day>`
