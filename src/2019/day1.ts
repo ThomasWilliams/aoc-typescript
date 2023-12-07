@@ -6,21 +6,25 @@ export default class Solver extends AbstractSolver {
 
   calcFuelForNumber = (n: number): number => Math.floor(n / 3) - 2;
 
-  calcFuelForLine = (line: string): number => {
-    let input = parseInt(line);
-    let fuel = 0;
-    while (input) {
-      fuel += input;
-      input = this.calcFuelForNumber(input);
+  calcFuelForLine = (line: number): number => {
+    const fuels: number[] = [];
+    let fuel = this.calcFuelForNumber(line);
+    while (fuel > 0) {
+      fuels.push(fuel);
+      fuel = this.calcFuelForNumber(fuel);
     }
-    return fuel;
+    return sum(fuels);
   };
 
   protected part1(input: string): SolverOutput {
-    return sum(input.split("\n").map((n) => Math.floor(parseInt(n) / 3) - 2));
+    return sum(
+      input.split("\n").map((line) => this.calcFuelForNumber(parseInt(line))),
+    );
   }
 
   protected part2(input: string): SolverOutput {
-    return sum(input.split("\n").map((line) => this.calcFuelForLine(line)));
+    return sum(
+      input.split("\n").map((line) => this.calcFuelForLine(parseInt(line))),
+    );
   }
 }
